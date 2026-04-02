@@ -1,0 +1,7 @@
+[
+  {"id": 1, "query": "Where can you see Giotto’s frescoes in Padua?", "expected_answer": "Scrovegni Chapel"},
+  {"id": 2, "query": "What is the large oval square with an island called?", "expected_answer": "Prato della Valle"},
+  {"id": 3, "query": "Which basilica houses Saint Anthony’s tomb?", "expected_answer": "Basilica of Saint Anthony"},
+  {"id": 4, "query": "What is the oldest university botanical garden in Padua?", "expected_answer": "Botanical Garden of Padua"},
+  {"id": 5, "query": "When is Saint Anthony’s feast celebrated in Padua?", "expected_answer": "June 13"}
+]

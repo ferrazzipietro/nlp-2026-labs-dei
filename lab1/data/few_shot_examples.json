@@ -1,0 +1,5 @@
+[
+  {"input": "Barack Obama met Angela Merkel in Berlin. in 2014, to discuss about the economic situation.", "output": ["Barack Obama", "Angela Merkel"]},
+  {"input": "Maria Rossi called Luca yesterday, as he wanted to book a table at the restaurant.", "output": ["Maria Rossi", "Luca"]},
+  {"input": "The project of the Trump tower to be built in Belgrad has been canceled.", "output": []}
+]
