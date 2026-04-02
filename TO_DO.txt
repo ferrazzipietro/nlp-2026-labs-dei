@@ -1,3 +1,0 @@
-Il lab 1 e 2 sono finiti e testati.
-
-Il lab 3 ha bisogno di semplificare la parte di valutazione, e di testare la parte di gemma. La parte di BERT è già testata.
