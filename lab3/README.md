@@ -1,35 +1,46 @@
-# Lab 3 — Named Entity Recognition (NER)
+# Lab 2 — Building a Minimal RAG
 
-Objective: Showcase how to perform NER with the Transformers library using two approaches and evaluate results.
+Objective: Build a Retrieval-Augmented Generation (RAG) system using components from Lab 1, focusing on understanding internal mechanisms rather than efficiency.
 
-## Contents
-- BERT-based NER (token classification via `dslim/bert-base-NER`)
-- Gemma prompting for NER (chat model returning JSON PERSON/ORG/LOC)
-- Evaluation: micro and per-label precision/recall/F1 based on exact text match
-- Exercise to extend and compare methods
+## Structure
+- RAG overview and design choices
+- Embedder: BERT (encoder-only) for chunk embeddings
+- Generator: gemma (decoder-only) for answer generation with context
+- Exercises:
+  1. Convert documents into a JSON knowledge base (KB) with `text`, `embedding`, and `embedding_dim`
+  2. Implement a function to retrieve the top-n most similar chunks for a query
+  3. Generate answers using retrieved chunks as context (short answers only, sourced from KB)
 
 ## Repo Layout
-- `lab3/notebooks/lab3_ner.ipynb` — the notebook
-- `lab3/data/ner_examples.json` — 10 sentences with gold PERSON/ORG/LOC entities
-- `lab3/data/few_shot_ner_examples.json` — 3 examples for few-shot prompting
-- `lab3/models_cache/` — cache directory for model artifacts
+- `lab2/notebooks/lab2_rag.ipynb` — the notebook
+- `lab2/data/kb_docs.json` — 25 short documents about Padua (tourism, work, university, ecclesial)
+- `lab2/data/queries.json` — 5 queries with expected short answers, all present in the KB
+- `lab2/models_cache/` — local cache for downloaded models
 
 ## Setup
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install -r lab3/requirements.txt
+pip install -r lab2/requirements.txt
 ```
 
 ## Running
-Open the notebook and run cells in order.
-- BERT pipeline runs on CPU/GPU automatically.
-- Gemma generation is disabled by default (`RUN_GEMMA=False`). Enable only if you have sufficient resources (preferably GPU).
+Open the notebook and follow cells in order.
+- Indexing produces `lab2/data/kb_index.json` containing chunk metadata and embeddings.
+- Retrieval returns top-n chunks by cosine similarity.
+- Generation uses gemma with a concise system prompt and the retrieved context. By default, generation is disabled (`RUN_gemma=False`). Enable only with sufficient resources (preferably GPU).
+
+## RAG Overview
+A RAG system retrieves relevant knowledge chunks and feeds them into a generator to produce grounded answers. In this lab:
+- Embeddings use pooled hidden states from BERT (`last_hidden_state` mean)
+- Retrieval uses cosine similarity
+- Prompting instructs the model to answer concisely and only from provided context
+
+## Real-World Implementations and Resources
+- Storage: **pgvector** (Postgres extension), **FAISS**, **Milvus**, **Weaviate**, **Pinecone**
+- Serving: **vLLM** (open source), closed-source serving options
+- Frameworks: **LangGraph**, **gemmaIndex**
 
 ## Notes
-- Labels are mapped to PERSON/ORG/LOC for consistency.
-- Evaluation performs entity-level matching by exact surface text (case-insensitive). Span-level scoring can be added if desired.
-
-## Exercise
-- Add types (DATE/EVENT), expand the dataset, and compare zero-shot vs three-shot prompting.
-- Improve prompts and report errors with examples.
+- Keep answers short and grounded in KB content.
+- For evaluation, compare generated answers with the `expected_answer` for each query.
