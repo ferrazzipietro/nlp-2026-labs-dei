@@ -210,3 +210,9 @@ __marimo__/
 
 
 */*/*/models_cache/
+*solution*
+*/*solution*
+*/*/*solution*
+*/*cache*
+*/*/*/*cache*
+*/*/*cache*
