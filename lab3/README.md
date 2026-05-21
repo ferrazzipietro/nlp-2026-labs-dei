@@ -1,4 +1,4 @@
-# Lab 2 — Building a Minimal RAG
+# Lab 3 — Building a Minimal RAG
 
 Objective: Build a Retrieval-Augmented Generation (RAG) system using components from Lab 1, focusing on understanding internal mechanisms rather than efficiency.
 
