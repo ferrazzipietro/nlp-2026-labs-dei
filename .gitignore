@@ -220,3 +220,5 @@ __marimo__/
 lab4/notebooks/lab_math_excercise.ipynb
 lab4/notebooks/lab_ner_math.ipynb
 lab4/codabench
+lab_rag_math/
+bench_rag
